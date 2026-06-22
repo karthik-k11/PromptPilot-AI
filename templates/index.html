@@ -3,13 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>PromptPilot AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
 
-    <h1>Welcome to PromptPilot AI</h1>
+    <div class="container">
 
-    <p>Your AI Prompt Optimization Assistant</p>
+        <!-- Navigation -->
+
+        <nav class="navbar">
+
+            <div class="logo">
+                PromptPilot AI
+            </div>
+
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/history">History</a>
+            </div>
+
+        </nav>
+
+
+        <!-- Hero -->
+
+        <section class="hero">
+
+            <h1>PromptPilot AI</h1>
+
+            <p>
+                Create clear, structured and effective prompts for today's leading AI platforms.
+            </p>
+
+        </section>
+
+
+        <!-- Prompt Editor -->
+
+        <section class="card">
+
+            <h2>Prompt Editor</h2>
+
+            <textarea
+                id="userPrompt"
+                placeholder="Describe what you want AI to do..."
+            ></textarea>
+
+
+            <div class="controls">
+
+                <div class="input-group">
+
+                    <label>AI Platform</label>
+
+                    <select id="platform">
+
+                        <option>ChatGPT</option>
+
+                        <option selected>Gemini</option>
+
+                        <option>Claude</option>
+
+                        <option>Llama</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>Prompt Type</label>
+
+                    <select id="promptType">
+
+                        <option selected>Coding</option>
+
+                        <option>Resume</option>
+
+                        <option>Email</option>
+
+                        <option>Research</option>
+
+                        <option>Marketing</option>
+
+                        <option>SQL</option>
+
+                        <option>Image Generation</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="button-area">
+
+                <button id="optimizeBtn">
+
+                    Optimize Prompt
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Output -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                <h2>Optimized Prompt</h2>
+
+                <button id="copyBtn">
+
+                    Copy
+
+                </button>
+
+            </div>
+
+
+            <div id="optimizedPrompt" class="output-box">
+
+                Your optimized prompt will appear here...
+
+            </div>
+
+        </section>
+
+
+
+        <!-- Bottom Cards -->
+
+        <section class="bottom-grid">
+
+            <div class="card score-card">
+
+                <h2>Prompt Score</h2>
+
+                <div class="score-circle">
+
+                    <span id="scoreValue">
+
+                        0
+
+                    </span>
+
+                </div>
+
+                <p id="scoreText">
+
+                    Waiting for optimization
+
+                </p>
+
+            </div>
+
+
+
+            <div class="card">
+
+                <h2>Improvements</h2>
+
+                <ul id="improvementList">
+
+                    <li>
+                        Improvements will appear here.
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
+
 </html>
