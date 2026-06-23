@@ -1,0 +1,689 @@
+/* ===========================
+   PromptPilot AI Design System
+=========================== */
+
+:root {
+
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+
+    --background-color: #f5f7fb;
+    --card-background: #ffffff;
+
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+
+    --border-color: #e5e7eb;
+
+    --success-color: #16a34a;
+    --warning-color: #f59e0b;
+    --danger-color: #dc2626;
+
+    --shadow-sm:
+        0 2px 8px rgba(15, 23, 42, 0.05);
+
+    --shadow-md:
+        0 10px 25px rgba(15, 23, 42, 0.08);
+
+    --radius: 12px;
+
+    --transition: 0.25s ease;
+
+}
+
+
+/* ===========================
+   Reset
+=========================== */
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    background:var(--background-color);
+
+    color:var(--text-primary);
+
+    line-height:1.6;
+
+}
+
+
+/* ===========================
+   Main Container
+=========================== */
+
+.container{
+
+    width:min(1180px,92%);
+
+    margin:40px auto;
+
+}
+
+
+/* ===========================
+   Navigation
+=========================== */
+
+.navbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:60px;
+
+}
+
+
+.logo{
+
+    font-size:1.8rem;
+
+    font-weight:700;
+
+    letter-spacing:-0.5px;
+
+    color:var(--text-primary);
+
+}
+
+
+.nav-links{
+
+    display:flex;
+
+    gap:30px;
+
+}
+
+
+.nav-links a{
+
+    text-decoration:none;
+
+    color:var(--text-secondary);
+
+    font-weight:500;
+
+    transition:var(--transition);
+
+}
+
+
+.nav-links a:hover{
+
+    color:var(--primary-color);
+
+}
+
+
+/* ===========================
+   Hero
+=========================== */
+
+.hero{
+
+    margin-bottom:45px;
+
+}
+
+
+.hero h1{
+
+    font-size:3rem;
+
+    font-weight:700;
+
+    letter-spacing:-1px;
+
+    margin-bottom:15px;
+
+    color:var(--text-primary);
+
+}
+
+
+.hero p{
+
+    width:70%;
+
+    color:var(--text-secondary);
+
+    font-size:1.05rem;
+
+}
+
+
+/* ===========================
+   Cards
+=========================== */
+
+.card{
+
+    background:var(--card-background);
+
+    border:1px solid var(--border-color);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow-sm);
+
+    padding:28px;
+
+    margin-bottom:28px;
+
+    transition:var(--transition);
+
+}
+
+
+.card:hover{
+
+    box-shadow:var(--shadow-md);
+
+}
+
+
+.card h2{
+
+    font-size:1.25rem;
+
+    margin-bottom:22px;
+
+    font-weight:600;
+
+    color:var(--text-primary);
+
+}
+
+/* ===========================
+   Prompt Editor
+=========================== */
+
+textarea {
+
+    width: 100%;
+    min-height: 220px;
+
+    resize: vertical;
+
+    padding: 18px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: var(--radius);
+
+    outline: none;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 15px;
+
+    color: var(--text-primary);
+
+    background: #ffffff;
+
+    transition: var(--transition);
+
+    margin-bottom: 28px;
+
+}
+
+
+textarea:focus {
+
+    border-color: var(--primary-color);
+
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.10);
+
+}
+
+
+/* ===========================
+   Controls
+=========================== */
+
+.controls {
+
+    display: flex;
+
+    gap: 24px;
+
+    margin-bottom: 28px;
+
+}
+
+
+.input-group {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.input-group label {
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-bottom: 10px;
+
+    color: var(--text-secondary);
+
+}
+
+
+select {
+
+    height: 48px;
+
+    border-radius: var(--radius);
+
+    border: 1px solid var(--border-color);
+
+    padding: 0 16px;
+
+    font-size: 15px;
+
+    font-family: "Inter", sans-serif;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+
+}
+
+
+select:focus {
+
+    outline: none;
+
+    border-color: var(--primary-color);
+
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.10);
+
+}
+
+
+/* ===========================
+   Buttons
+=========================== */
+
+.button-area {
+
+    display: flex;
+
+    justify-content: center;
+
+}
+
+
+button {
+
+    border: none;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+
+    font-family: "Inter", sans-serif;
+
+}
+
+
+#optimizeBtn {
+
+    background: var(--primary-color);
+
+    color: white;
+
+    padding: 14px 34px;
+
+    border-radius: var(--radius);
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+}
+
+
+#optimizeBtn:hover {
+
+    background: var(--primary-hover);
+
+    transform: translateY(-2px);
+
+}
+
+
+/* ===========================
+   Output Card
+=========================== */
+
+.card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+#copyBtn {
+
+    background: #f3f4f6;
+
+    color: var(--text-primary);
+
+    border: 1px solid var(--border-color);
+
+    padding: 10px 18px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+#copyBtn:hover {
+
+    background: #e5e7eb;
+
+}
+
+
+.output-box {
+
+    min-height: 220px;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: var(--radius);
+
+    padding: 20px;
+
+    background: #fafafa;
+
+    white-space: pre-wrap;
+
+    line-height: 1.8;
+
+    color: var(--text-secondary);
+
+}
+
+/* ===========================
+   Bottom Section
+=========================== */
+
+.bottom-grid {
+
+    display: grid;
+
+    grid-template-columns: 320px 1fr;
+
+    gap: 28px;
+
+}
+
+
+.score-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.score-circle {
+
+    width: 170px;
+
+    height: 170px;
+
+    border-radius: 50%;
+
+    border: 10px solid var(--primary-color);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 24px 0;
+
+    background: white;
+
+}
+
+
+.score-circle span {
+
+    font-size: 48px;
+
+    font-weight: 700;
+
+    color: var(--primary-color);
+
+}
+
+
+#scoreText {
+
+    color: var(--text-secondary);
+
+    text-align: center;
+
+}
+
+
+#improvementList {
+
+    list-style: none;
+
+}
+
+
+#improvementList li {
+
+    padding: 14px 18px;
+
+    margin-bottom: 14px;
+
+    background: #f8fafc;
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 10px;
+
+    color: var(--text-primary);
+
+    transition: var(--transition);
+
+}
+
+
+#improvementList li:hover {
+
+    transform: translateX(4px);
+
+    border-color: var(--primary-color);
+
+}
+
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width:950px){
+
+    .hero p{
+
+        width:100%;
+
+    }
+
+    .controls{
+
+        flex-direction:column;
+
+    }
+
+    .bottom-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+
+@media (max-width:700px){
+
+    .navbar{
+
+        flex-direction:column;
+
+        gap:18px;
+
+        align-items:flex-start;
+
+    }
+
+    .hero h1{
+
+        font-size:2.3rem;
+
+    }
+
+    .container{
+
+        width:95%;
+
+        margin:20px auto;
+
+    }
+
+}
+
+
+@media (max-width:500px){
+
+    textarea{
+
+        min-height:170px;
+
+    }
+
+    .score-circle{
+
+        width:140px;
+
+        height:140px;
+
+    }
+
+    .score-circle span{
+
+        font-size:38px;
+
+    }
+
+}
+
+
+/* ===========================
+   Small Animations
+=========================== */
+
+.card{
+
+    animation:fadeUp .45s ease;
+
+}
+
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(12px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+button:active{
+
+    transform:scale(.98);
+
+}
+
+
+textarea::placeholder{
+
+    color:#9ca3af;
+
+}
+
+
+.output-box:empty::before{
+
+    content:"Optimized prompt will appear here...";
+
+    color:#9ca3af;
+
+}
