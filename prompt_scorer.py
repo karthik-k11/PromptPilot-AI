@@ -1,6 +1,38 @@
 import re
 
 
+OBJECTIVE_KEYWORDS = {
+    "write", "create", "generate", "build", "design",
+    "develop", "explain", "summarize", "analyze",
+    "optimize", "convert", "translate", "draft"
+}
+
+
+ROLE_KEYWORDS = {
+    "you are", "act as", "expert", "assistant",
+    "developer", "engineer", "writer", "analyst"
+}
+
+
+FORMAT_KEYWORDS = {
+    "markdown", "json", "table", "list",
+    "bullet", "code", "format"
+}
+
+
+CONSTRAINT_KEYWORDS = {
+    "must", "should", "only", "without",
+    "avoid", "include", "ensure", "don't"
+}
+
+
+def contains_keywords(text, keywords):
+
+    text = text.lower()
+
+    return any(keyword in text for keyword in keywords)
+
+
 def analyze_prompt(prompt):
 
     score = 0
@@ -9,130 +41,153 @@ def analyze_prompt(prompt):
 
     prompt_lower = prompt.lower()
 
-    words = prompt.split()
+    word_count = len(prompt.split())
 
-    word_count = len(words)
 
-    if word_count >= 20:
+    if word_count >= 40:
+
         score += 15
+
+    elif word_count >= 20:
+
+        score += 10
+
+    elif word_count >= 10:
+
+        score += 6
+
     else:
+
         improvements.append(
-            "Provide more details to make the prompt more informative."
+            "Added more descriptive details."
         )
 
-    objective_keywords = [
-        "create",
-        "write",
-        "generate",
-        "build",
-        "design",
-        "develop",
-        "explain",
-        "summarize",
-        "analyze"
-    ]
+    if contains_keywords(prompt_lower, OBJECTIVE_KEYWORDS):
 
-    if any(word in prompt_lower for word in objective_keywords):
         score += 15
+
     else:
+
         improvements.append(
-            "Clearly describe the objective of your prompt."
+            "Clarified the objective."
         )
 
-    context_keywords = [
+
+    if contains_keywords(prompt_lower, ROLE_KEYWORDS):
+
+        score += 15
+
+    else:
+
+        improvements.append(
+            "Added a professional AI role."
+        )
+
+
+    if any(word in prompt_lower for word in [
         "for",
-        "about",
         "using",
         "with",
-        "based on",
-        "related to"
-    ]
+        "about",
+        "based on"
+    ]):
 
-    if any(keyword in prompt_lower for keyword in context_keywords):
-        score += 15
+        score += 12
+
     else:
+
         improvements.append(
-            "Add context so the AI understands your request better."
+            "Added relevant context."
         )
 
-    role_keywords = [
-        "you are",
-        "act as",
-        "expert",
-        "assistant"
-    ]
+    if contains_keywords(prompt_lower, CONSTRAINT_KEYWORDS):
 
-    if any(keyword in prompt_lower for keyword in role_keywords):
-        score += 15
+        score += 12
+
     else:
+
         improvements.append(
-            "Specify the role you want the AI to assume."
+            "Added clear requirements and constraints."
         )
 
-    constraint_keywords = [
-        "only",
-        "must",
-        "should",
-        "without",
-        "avoid",
-        "include"
-    ]
 
-    if any(keyword in prompt_lower for keyword in constraint_keywords):
+    if contains_keywords(prompt_lower, FORMAT_KEYWORDS):
+
         score += 10
-    else:
-        improvements.append(
-            "Add constraints or requirements to guide the AI."
-        )
 
-    format_keywords = [
-        "table",
-        "json",
-        "markdown",
-        "bullet",
-        "list",
-        "code",
-        "format"
-    ]
-
-    if any(keyword in prompt_lower for keyword in format_keywords):
-        score += 10
     else:
-        improvements.append(
-            "Specify the desired output format."
-        )
 
-    if "\n" in prompt or ":" in prompt:
-        score += 10
-    else:
         improvements.append(
-            "Structure the prompt using sections or line breaks."
+            "Defined the expected output format."
         )
 
 
-    if word_count >= 10:
-        score += 10
-    else:
+    structure_score = 0
+
+    if "\n" in prompt:
+
+        structure_score += 4
+
+    if ":" in prompt:
+
+        structure_score += 4
+
+    if "-" in prompt or "*" in prompt:
+
+        structure_score += 2
+
+    score += structure_score
+
+    if structure_score < 8:
+
         improvements.append(
-            "Make the prompt more specific."
+            "Improved prompt structure."
         )
 
-    score = min(score, 100)
+    unique_words = len(set(re.findall(r"\w+", prompt_lower)))
 
-    if score >= 90:
+    if unique_words >= 50:
+
+        score += 11
+
+    elif unique_words >= 25:
+
+        score += 8
+
+    elif unique_words >= 10:
+
+        score += 5
+
+    else:
+
+        improvements.append(
+            "Made the prompt more specific."
+        )
+
+
+    score = min(score, 98)
+
+
+    if score >= 92:
+
+        level = "Outstanding"
+
+    elif score >= 82:
+
         level = "Excellent"
 
-    elif score >= 75:
-        level = "Very Good"
+    elif score >= 70:
 
-    elif score >= 60:
+        level = "Strong"
+
+    elif score >= 55:
+
         level = "Good"
 
-    elif score >= 40:
+    else:
+
         level = "Needs Improvement"
 
-    else:
-        level = "Poor"
 
     return {
 

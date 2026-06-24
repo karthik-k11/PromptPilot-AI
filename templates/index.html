@@ -19,8 +19,6 @@
 
     <div class="container">
 
-        <!-- Navigation -->
-
         <nav class="navbar">
 
             <div class="logo">
@@ -34,9 +32,6 @@
 
         </nav>
 
-
-        <!-- Hero -->
-
         <section class="hero">
 
             <h1>PromptPilot AI</h1>
@@ -47,8 +42,6 @@
 
         </section>
 
-
-        <!-- Prompt Editor -->
 
         <section class="card">
 
@@ -120,9 +113,6 @@
 
         </section>
 
-
-        <!-- Output -->
-
         <section class="card">
 
             <div class="card-header">
@@ -147,35 +137,79 @@
         </section>
 
 
-
-        <!-- Bottom Cards -->
-
         <section class="bottom-grid">
 
-            <div class="card score-card">
+            <div class="card quality-card">
 
-                <h2>Prompt Score</h2>
+                <h2>Prompt Quality</h2>
 
-                <div class="score-circle">
+                <div class="quality-section">
 
-                    <span id="scoreValue">
+                    <div class="quality-item">
 
-                        0
+                        <span class="quality-label">
+
+                            Before
+
+                        </span>
+
+                        <span id="originalScore" class="quality-score">
+
+                            0
+
+                        </span>
+
+                            <span id="originalLevel" class="quality-level">
+
+                            Waiting
+
+                        </span>
+
+                    </div>
+
+                    <div class="quality-arrow">
+
+                        ↓
+
+                    </div>
+
+                    <div class="quality-item">
+
+                        <span class="quality-label">
+
+                            After
+
+                        </span>
+
+                        <span id="optimizedScore" class="quality-score">
+
+                            0
+
+                        </span>
+
+                        <span id="optimizedLevel" class="quality-level">
+
+                            Waiting
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="improvement-score">
+
+                    Improvement
+
+                    <span id="scoreImprovement">
+
+                        +0
 
                     </span>
 
                 </div>
 
-                <p id="scoreText">
-
-                    Waiting for optimization
-
-                </p>
-
             </div>
-
-
-
             <div class="card">
 
                 <h2>Improvements</h2>
